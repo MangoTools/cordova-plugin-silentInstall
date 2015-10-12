@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied.  See the License for the
+  specific language governing permissions and limitations
+  under the License.
+-->
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+           id="cordova-plugin-silentInstall"
+      version="0.0.1">
+	
+    <name>Silent Update</name>
+    <description>Cordova Silent Install Plugin for rooted android phones</description>
+    <license>MIT</license>
+    <keywords>cordova,apk, update, install</keywords>
+    <!--<repo>https://github.com/MangoTools/cordova-plugin-lightSensor.git</repo>-->
+    <!--<issue>https://github.com/MangoTools/cordova-plugin-lightSensor/issues</issue>-->
+
+    <js-module src="www/silentInstall.js" name="silentInstall">
+        <clobbers target="cordova-plugin-silentInstall" />
+    </js-module>
+    
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+	        <feature name="SilentInstall">
+                <param name="android-package" value="tools.mango.cordova.plugin.android.SilentInstall"/>
+                <param name="onload" value="true" />
+            </feature>
+	    </config-file>
+
+	    <source-file src="src/main/java/tools/mango/cordova/plugin/android/SilentInstall.java" target-dir="src/main/java/tools/mango/cordova/plugin/android" />
+    </platform> 
+	
+
+</plugin>
