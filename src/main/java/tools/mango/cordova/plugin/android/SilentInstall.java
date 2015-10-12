@@ -92,13 +92,13 @@ public class SilentInstall extends CordovaPlugin {
         System.out.println("ABo - uri="+uri);
         try{
             URL url = new URL( uri );
-            System.out.println("ABo - url="+url);
+            System.out.println("ABo - url=" + url);
                 File file = new File( url.getFile() );
                 if(file.exists()){
                     try {
                         System.out.println("ABo - File exist: "+file);
-                        //final String command = "pm install -r " + file.getAbsolutePath();
-                        final String command = "adb install -r " + file.getAbsolutePath();
+                        final String command = "pm install -r " + file.getAbsolutePath();
+                        //final String command = "adb install -r " + file.getAbsolutePath();
                         System.out.println("ABo - SU run : " + command);
                         Process proc = Runtime.getRuntime().exec(new String[] { "su", "-c", command });
                         proc.waitFor();
