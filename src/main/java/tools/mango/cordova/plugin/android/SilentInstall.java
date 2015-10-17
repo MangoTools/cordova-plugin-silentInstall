@@ -115,6 +115,7 @@ public class SilentInstall extends CordovaPlugin {
                                 .getActivity(c, mPendingIntentId, mStartActivity,
                                         PendingIntent.FLAG_CANCEL_CURRENT);
                         AlarmManager mgr = (AlarmManager) c.getSystemService(Context.ALARM_SERVICE);
+                        System.out.println("ABo - Set restart: " + c.getPackageName().toString());
                         mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 15000, mPendingIntent);
                     } else {
                         Log.e(TAG, "Was not able to restart application, mStartActivity null");
@@ -140,9 +141,9 @@ public class SilentInstall extends CordovaPlugin {
                 if(file.exists()){
                     try {
                         // Prepare for restart
+                        System.out.println("ABo - Prepare restart");
                         Context context=this.cordova.getActivity().getApplicationContext();
                         doRestart(context);
-
                         // Do update
                         System.out.println("ABo - File exist: "+file);
                         final String command = "pm install -r " + file.getAbsolutePath();
