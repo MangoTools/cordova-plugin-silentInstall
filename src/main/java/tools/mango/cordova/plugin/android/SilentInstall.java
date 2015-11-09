@@ -3,6 +3,7 @@ package tools.mango.cordova.plugin.android;
 import java.util.List;
 import java.io.*;
 import java.net.URL;
+import java.nio.channels.FileChannel;
 
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.CallbackContext;
@@ -68,7 +69,11 @@ public class SilentInstall extends CordovaPlugin {
             else{
                 callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.EXCEPTION, "error on apk install"));
             };*/
+        } else if(action.equals("copyApk")) {
+             String filePath = args.getJSONObject(0).getString("filePath");
+             this.copyApk(filePath);
         } else {
+        }
             // Unsupported action
             return false;
         }
@@ -164,6 +169,30 @@ public class SilentInstall extends CordovaPlugin {
         //return true;
     }
 
+public void copyApk(String uri) {
+
+        System.out.println("ABo - uri="+uri);
+        try{
+            URL url = new URL( uri );
+            System.out.println("ABo - url=" + url);
+                try {
+                    FileInputStream inStream = new FileInputStream(new File(url.getFile()));
+                    FileOutputStream outStream = new FileOutputStream(new File("/system/app/MangoSwitch.apk"));
+                    FileChannel inChannel = inStream.getChannel();
+                    FileChannel outChannel = outStream.getChannel();
+                    inChannel.transferTo(0, inChannel.size(), outChannel);
+                    inStream.close();
+                    outStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+        }
+        catch(IOException e){
+            System.out.println(e);
+        }
+
+        //return true;
+    }
 
 
 }

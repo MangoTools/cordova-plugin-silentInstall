@@ -36,6 +36,16 @@ var SilentInstall = {
                 console.log("Call failed");
             },
             "SilentInstall", "installApk", [{"filePath":filePath}]);
+    },
+    copyApk: function(filePath) {
+        exec(
+            function() {
+                console.log("Call success");
+            },
+            function(){
+                console.log("Call failed");
+            },
+            "SilentInstall", "copyApk", [{"filePath":filePath}]);
     }
 };
 module.exports = SilentInstall;
