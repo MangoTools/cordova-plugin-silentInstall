@@ -245,12 +245,12 @@ public void copyApk(String uri) {
                     outStream.close();
                     setR0();*/
                     copyApkToSys(url);
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                     System.out.println(e);
             }
         }
-        catch(IOException e){
+        catch(Exception e){
             System.out.println(e);
         }
 
