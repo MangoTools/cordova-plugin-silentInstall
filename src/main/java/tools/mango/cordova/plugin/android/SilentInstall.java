@@ -73,7 +73,7 @@ public class SilentInstall extends CordovaPlugin {
              String filePath = args.getJSONObject(0).getString("filePath");
              this.copyApk(filePath);
         } else {
-        }
+
             // Unsupported action
             return false;
         }
