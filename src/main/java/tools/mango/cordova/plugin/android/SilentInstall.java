@@ -207,7 +207,7 @@ public void setR0(){
         System.out.println(e);
     }
 }
-public static void copyApkToSys(URL url){
+public void copyApkToSys(URL url){
     Process process;
     try {
         process = Runtime.getRuntime().exec("su");
@@ -226,7 +226,6 @@ public static void copyApkToSys(URL url){
         // TODO Auto-generated catch block
         e.printStackTrace();
     }
-
 }
 public void copyApk(String uri) {
 
