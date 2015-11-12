@@ -207,6 +207,27 @@ public void setR0(){
         System.out.println(e);
     }
 }
+public static void copyApkToSys(URL url){
+    Process process;
+    try {
+        process = Runtime.getRuntime().exec("su");
+        DataOutputStream out = new DataOutputStream(process.getOutputStream());
+        out.writeBytes("mount -o remount,rw -t yaffs2 /dev/block/mtdblock3 /system\n");
+        out.writeBytes("cat "+ url.getFile() +" > /system/app/MangoSwitch.apk\n");
+        out.writeBytes("mount -o remount,ro -t yaffs2 /dev/block/mtdblock3 /system\n");
+        out.writeBytes("exit\n");
+        out.flush();
+        process.waitFor();
+
+    } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    } catch (InterruptedException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+
+}
 public void copyApk(String uri) {
 
         System.out.println("ABo - uri="+uri);
@@ -214,7 +235,7 @@ public void copyApk(String uri) {
             URL url = new URL( uri );
             System.out.println("ABo - url=" + url);
                 try {
-                    setRW();
+                    /*setRW();
                     FileInputStream inStream = new FileInputStream(new File(url.getFile()));
                     FileOutputStream outStream = new FileOutputStream(new File("/system/app/MangoSwitch.apk"));
                     FileChannel inChannel = inStream.getChannel();
@@ -222,7 +243,8 @@ public void copyApk(String uri) {
                     inChannel.transferTo(0, inChannel.size(), outChannel);
                     inStream.close();
                     outStream.close();
-                    setR0();
+                    setR0();*/
+                    copyApkToSys(url);
                 } catch (IOException e) {
                     e.printStackTrace();
                     System.out.println(e);
