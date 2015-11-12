@@ -200,9 +200,11 @@ public void setR0(){
     } catch (IOException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
+        System.out.println(e);
     } catch (InterruptedException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
+        System.out.println(e);
     }
 }
 public void copyApk(String uri) {
@@ -223,7 +225,8 @@ public void copyApk(String uri) {
                     setR0();
                 } catch (IOException e) {
                     e.printStackTrace();
-                }
+                    System.out.println(e);
+            }
         }
         catch(IOException e){
             System.out.println(e);
