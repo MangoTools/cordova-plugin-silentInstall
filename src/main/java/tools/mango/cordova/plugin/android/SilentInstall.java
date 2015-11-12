@@ -256,7 +256,28 @@ public void copyApk(String uri) {
 
         //return true;
     }
-
-
 }
+public void reboot() {
+    Process rebootProcess = null;
+    try
+    {
+        rebootProcess = Runtime.getRuntime().exec("su -c reboot now");
+    }
+    catch (Exception e)
+    {
+            System.out.println(e);
+    }
 
+    // We waitFor only if we've got the process.
+    if (rebootProcess != null)
+    {
+        try
+        {
+            rebootProcess.waitFor();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+    }
+}
