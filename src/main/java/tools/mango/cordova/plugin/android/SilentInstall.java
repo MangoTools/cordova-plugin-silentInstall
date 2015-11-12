@@ -220,7 +220,7 @@ public void copyApk(String uri) {
                     inChannel.transferTo(0, inChannel.size(), outChannel);
                     inStream.close();
                     outStream.close();
-                    setRO();
+                    setR0();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
