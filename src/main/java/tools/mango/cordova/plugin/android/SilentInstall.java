@@ -169,65 +169,65 @@ public class SilentInstall extends CordovaPlugin {
 
         //return true;
     }
-public void setRW(){
-    Process process;
-    try {
-        process = Runtime.getRuntime().exec("su");
-        DataOutputStream out = new DataOutputStream(process.getOutputStream());
-        out.writeBytes("mount -o remount,rw -t yaffs2 /dev/block/mtdblock3 /system\n");
-        out.writeBytes("exit\n");
-        out.flush();
-        process.waitFor();
+    public void setRW(){
+        Process process;
+        try {
+            process = Runtime.getRuntime().exec("su");
+            DataOutputStream out = new DataOutputStream(process.getOutputStream());
+            out.writeBytes("mount -o remount,rw -t yaffs2 /dev/block/mtdblock3 /system\n");
+            out.writeBytes("exit\n");
+            out.flush();
+            process.waitFor();
 
-    } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-    } catch (InterruptedException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
-}
-public void setR0(){
-    Process process;
-    try {
-        process = Runtime.getRuntime().exec("su");
-        DataOutputStream out = new DataOutputStream(process.getOutputStream());
-        out.writeBytes("mount -o remount,ro -t yaffs2 /dev/block/mtdblock3 /system\n");
-        out.writeBytes("exit\n");
-        out.flush();
-        process.waitFor();
+    public void setR0(){
+        Process process;
+        try {
+            process = Runtime.getRuntime().exec("su");
+            DataOutputStream out = new DataOutputStream(process.getOutputStream());
+            out.writeBytes("mount -o remount,ro -t yaffs2 /dev/block/mtdblock3 /system\n");
+            out.writeBytes("exit\n");
+            out.flush();
+            process.waitFor();
 
-    } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-        System.out.println(e);
-    } catch (InterruptedException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-        System.out.println(e);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            System.out.println(e);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            System.out.println(e);
+        }
     }
-}
-public void copyApkToSys(URL url){
-    Process process;
-    try {
-        process = Runtime.getRuntime().exec("su");
-        DataOutputStream out = new DataOutputStream(process.getOutputStream());
-        out.writeBytes("mount -o remount,rw -t yaffs2 /dev/block/mtdblock3 /system\n");
-        out.writeBytes("cat "+ url.getFile() +" > /system/app/MangoSwitch.apk\n");
-        out.writeBytes("mount -o remount,ro -t yaffs2 /dev/block/mtdblock3 /system\n");
-        out.writeBytes("exit\n");
-        out.flush();
-        process.waitFor();
+    public void copyApkToSys(URL url){
+        Process process;
+        try {
+            process = Runtime.getRuntime().exec("su");
+            DataOutputStream out = new DataOutputStream(process.getOutputStream());
+            out.writeBytes("mount -o remount,rw -t yaffs2 /dev/block/mtdblock3 /system\n");
+            out.writeBytes("cat "+ url.getFile() +" > /system/app/MangoSwitch.apk\n");
+            out.writeBytes("mount -o remount,ro -t yaffs2 /dev/block/mtdblock3 /system\n");
+            out.writeBytes("exit\n");
+            out.flush();
+            process.waitFor();
 
-    } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-    } catch (InterruptedException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
-}
-public void copyApk(String uri) {
+    public void copyApk(String uri) {
 
         System.out.println("ABo - uri="+uri);
         try{
@@ -255,28 +255,29 @@ public void copyApk(String uri) {
 
         //return true;
     }
-}
-public void reboot() {
-    Process rebootProcess = null;
-    try
-    {
-        rebootProcess = Runtime.getRuntime().exec("su -c reboot now");
-    }
-    catch (Exception e)
-    {
-            System.out.println(e);
-    }
 
-    // We waitFor only if we've got the process.
-    if (rebootProcess != null)
-    {
+    public void reboot() {
+        Process rebootProcess = null;
         try
         {
-            rebootProcess.waitFor();
+            rebootProcess = Runtime.getRuntime().exec("su -c reboot now");
         }
         catch (Exception e)
         {
-            System.out.println(e);
+                System.out.println(e);
+        }
+
+        // We waitFor only if we've got the process.
+        if (rebootProcess != null)
+        {
+            try
+            {
+                rebootProcess.waitFor();
+            }
+            catch (Exception e)
+            {
+                System.out.println(e);
+            }
         }
     }
 }
