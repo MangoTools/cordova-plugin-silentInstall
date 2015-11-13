@@ -227,12 +227,31 @@ public class SilentInstall extends CordovaPlugin {
             e.printStackTrace();
         }
     }
+    public void setPermission(string file, string permissions){
+        Process process;
+                try {
+                    process = Runtime.getRuntime().exec("su");
+                    DataOutputStream out = new DataOutputStream(process.getOutputStream());
+                    System.out.println("SilentInstall: exec '"+"chmod " + permissions + " " + file + "\n"+"'");
+                    out.writeBytes("chmod " + permissions + " " + file + "\n");
+                    out.writeBytes("exit\n");
+                    out.flush();
+                    process.waitFor();
+
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+    }
     public void copyApk(String uri) {
 
         System.out.println("ABo - uri="+uri);
         try{
             URL url = new URL( uri );
-            System.out.println("ABo - url=" + url);
+            //System.out.println("ABo - url=" + url);
                 try {
                     /*setRW();
                     FileInputStream inStream = new FileInputStream(new File(url.getFile()));
@@ -243,7 +262,11 @@ public class SilentInstall extends CordovaPlugin {
                     inStream.close();
                     outStream.close();
                     setR0();*/
+
                     copyApkToSys(url);
+
+                    setPermission(url.getFile().ToString(), "644");
+
                 } catch (Exception e) {
                     e.printStackTrace();
                     System.out.println(e);
@@ -260,6 +283,7 @@ public class SilentInstall extends CordovaPlugin {
         Process rebootProcess = null;
         try
         {
+            System.out.println("SilentInstall: exec 'su -c reboot now'");
             rebootProcess = Runtime.getRuntime().exec("su -c reboot now");
         }
         catch (Exception e)
