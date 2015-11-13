@@ -261,11 +261,11 @@ public class SilentInstall extends CordovaPlugin {
                     inChannel.transferTo(0, inChannel.size(), outChannel);
                     inStream.close();
                     outStream.close();
-                    setR0();*/
 
                     copyApkToSys(url);
 
-                    setPermission(url.getFile(), "755");
+                    setPermission(url.getFile(), "0644");
+                    setR0();*/
 
                 } catch (Exception e) {
                     e.printStackTrace();
