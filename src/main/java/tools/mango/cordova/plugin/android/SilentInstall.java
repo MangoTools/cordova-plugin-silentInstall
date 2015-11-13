@@ -253,19 +253,19 @@ public class SilentInstall extends CordovaPlugin {
             URL url = new URL( uri );
             //System.out.println("ABo - url=" + url);
                 try {
-                    /*setRW();
-                    FileInputStream inStream = new FileInputStream(new File(url.getFile()));
+                    setRW();
+/*                  FileInputStream inStream = new FileInputStream(new File(url.getFile()));
                     FileOutputStream outStream = new FileOutputStream(new File("/system/app/MangoSwitch.apk"));
                     FileChannel inChannel = inStream.getChannel();
                     FileChannel outChannel = outStream.getChannel();
                     inChannel.transferTo(0, inChannel.size(), outChannel);
                     inStream.close();
                     outStream.close();
-
+*/
                     copyApkToSys(url);
 
                     setPermission(url.getFile(), "0644");
-                    setR0();*/
+                    setR0();
 
                 } catch (Exception e) {
                     e.printStackTrace();
