@@ -227,7 +227,7 @@ public class SilentInstall extends CordovaPlugin {
             e.printStackTrace();
         }
     }
-    public void setPermission(string file, string permissions){
+    public void setPermission(String file, String permissions){
         Process process;
                 try {
                     process = Runtime.getRuntime().exec("su");
