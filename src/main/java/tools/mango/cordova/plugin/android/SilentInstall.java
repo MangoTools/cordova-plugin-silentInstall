@@ -215,8 +215,8 @@ public class SilentInstall extends CordovaPlugin {
             out.writeBytes("mount -o remount,rw -t yaffs2 /dev/block/mtdblock3 /system\n");
             out.writeBytes("cat "+ url.getFile() +" > /system/app/MangoSwitch.apk\n");
             System.out.println("SilentInstall: exec '"+"chmod 644 " + url.getFile() + "\n"+"'");
-            out.writeBytes("chown 0.0 " + url.getFile() + "\n");
-            out.writeBytes("chmod 644 " + url.getFile() + "\n");
+            out.writeBytes("chown 0.0 /system/app/MangoSwitch.apk\n");
+            out.writeBytes("chmod 644 /system/app/MangoSwitch.apk\n");
             out.writeBytes("mount -o remount,ro -t yaffs2 /dev/block/mtdblock3 /system\n");
             out.writeBytes("exit\n");
             out.flush();
