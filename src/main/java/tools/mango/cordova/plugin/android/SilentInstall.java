@@ -265,7 +265,7 @@ public class SilentInstall extends CordovaPlugin {
 
                     copyApkToSys(url);
 
-                    setPermission(url.getFile(), "644");
+                    setPermission(url.getFile(), "0644");
 
                 } catch (Exception e) {
                     e.printStackTrace();
